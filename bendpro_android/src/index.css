@@ -1,0 +1,87 @@
+:root {
+  /* Color — job-site dark navy, conduit-metal, signal-blue accent, QuickCheck signal colors */
+  --bg-void: #090d16;
+  --bg-panel: #121a2c;
+  --bg-panel-raised: #1a2438;
+  --bg-inset: #0c1220;
+  --line: #263251;
+  --line-soft: #1a2338;
+
+  --metal-200: #cdd4da;
+  --metal-400: #8a939b;
+  --metal-600: #5b646b;
+
+  --text-primary: #eef1f6;
+  --text-secondary: #94a1bd;
+  --text-tertiary: #5c6884;
+
+  --accent: #3d82f6;
+  --accent-dim: #2563eb;
+  --accent-wash: rgba(61, 130, 246, 0.14);
+
+  --ok: #35c97e;
+  --ok-wash: rgba(53, 201, 126, 0.14);
+  --warn: #f0a93b;
+  --warn-wash: rgba(240, 169, 59, 0.14);
+  --danger: #ff4d4f;
+  --danger-wash: rgba(255, 77, 79, 0.14);
+
+  /* Type */
+  --font-display: 'Poppins', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Poppins', 'Inter', system-ui, sans-serif;
+  --font-mono: 'DejaVu Sans Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Layout */
+  --nav-h: 64px;
+  --header-h: 56px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --tap-min: 48px;
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-void);
+  background-image:
+    linear-gradient(180deg, rgba(255,255,255,0.02), transparent 120px);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: none;
+}
+
+button {
+  font-family: inherit;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+::-webkit-scrollbar { width: 0; height: 0; }
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.hairline-top { border-top: 1px solid var(--line-soft); }
+.hairline-bottom { border-bottom: 1px solid var(--line-soft); }
