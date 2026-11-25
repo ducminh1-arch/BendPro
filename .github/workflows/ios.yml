@@ -1,0 +1,57 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "**" ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Test BendProCore package
+        run: |
+          if [ -d "BendPro-iOS/Packages/BendProCore" ]; then
+            cd BendPro-iOS/Packages/BendProCore
+          else
+            cd Packages/BendProCore
+          fi
+          swift test
+
+      - name: Generate Xcode Project
+        run: |
+          if [ -d "BendPro-iOS" ]; then
+            cd BendPro-iOS
+          fi
+          xcodegen generate
+
+      - name: Build iOS App
+        run: |
+          if [ -d "BendPro-iOS" ]; then
+            cd BendPro-iOS
+          fi
+          xcodebuild -project BendPro.xcodeproj \
+            -scheme BendPro \
+            -destination 'generic/platform=iOS Simulator' \
+            build CODE_SIGNING_ALLOWED=NO | tee build.log
+
+      - name: Upload Build Log Artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build-log
+          path: |
+            build.log
+            BendPro-iOS/build.log
+          if-no-files-found: ignore

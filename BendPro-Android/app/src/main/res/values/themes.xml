@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base splash theme using AndroidX SplashScreen API -->
+    <style name="Theme.BendPro.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#090D16</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.BendPro</item>
+    </style>
+
+    <!-- App theme after splash transitions -->
+    <style name="Theme.BendPro" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#090D16</item>
+        <item name="android:statusBarColor">#090D16</item>
+        <item name="android:navigationBarColor">#121A2C</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

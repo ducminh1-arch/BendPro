@@ -1,0 +1,52 @@
+name: BendPro
+
+options:
+  bundleIdPrefix: com.bendpro
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+
+packages:
+  BendProCore:
+    path: Packages/BendProCore
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    IPHONEOS_DEPLOYMENT_TARGET: "15.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+
+targets:
+  BendPro:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: BendPro
+    dependencies:
+      - package: BendProCore
+    info:
+      path: BendPro/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bendpro.app
+        PRODUCT_NAME: BendPro
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGNING_ALLOWED: NO
+
+  BendProTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "15.0"
+    sources:
+      - path: Tests/BendProTests
+    dependencies:
+      - target: BendPro
+      - package: BendProCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.bendpro.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGNING_ALLOWED: NO
